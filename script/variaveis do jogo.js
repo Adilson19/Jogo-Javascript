@@ -1,4 +1,17 @@
 var canvas, ctx, ALTURA, LARGURA, frames = 0;
+
+chao = {
+    y: 550,
+    altura: 50,
+    cor: "#ffdf70",
+
+    desenha: function(){
+        ctx.fillStyle = this.cor;
+        ctx.fillRect(0, this.y, LARGURA, this.altura);
+    }
+};
+
+
 function clique(event){
     alert("Clique");
 }
@@ -36,6 +49,8 @@ function atualiza(){ // Atualiza a lógica do jogo
 function desenha(){ // Desenha na tela
     ctx.fillStyle = "#50beff"; // Define a cor do fundo
     ctx.fillRect(0, 0, LARGURA, ALTURA); // Desenha o fundo
+
+    chao.desenha();
 } 
 
 // Inicia o jogo
