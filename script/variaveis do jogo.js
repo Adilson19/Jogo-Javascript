@@ -21,10 +21,22 @@ function main(){
     ctx = canvas.getContext("2d"); // Obtem o contexto 2D do canvas
     document.body.appendChild(canvas); // Adiciona o canvas ao corpo do documento
     document.addEventListener("mousedown", clique);
+
+    roda();
 }
-function roda(){}
-function atualiza(){} // Atualiza a lógica do jogo
-function desenha(){} // Desenha na tela
+function roda(){
+    atualiza();
+    desenha();
+
+    window.requestAnimationFrame(roda); // Chama a função roda novamente
+}
+function atualiza(){ // Atualiza a lógica do jogo
+    frames++;
+} 
+function desenha(){ // Desenha na tela
+    ctx.fillStyle = "#50beff"; // Define a cor do fundo
+    ctx.fillRect(0, 0, LARGURA, ALTURA); // Desenha o fundo
+} 
 
 // Inicia o jogo
 main();
