@@ -3,7 +3,7 @@ var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3,
 chao = {
     y: 550,
     altura: 50,
-    cor: "#ffdf70",
+    cor: "#c8da78",
 
     desenha: function(){
         ctx.fillStyle = this.cor;
@@ -16,10 +16,10 @@ bloco = {
     y: 0,
     altura: 50,
     largura: 50,
-    cor: "#ff4e4e",
-    gravidade: 1.5,
+    cor: "#ff9239",
+    gravidade: 1.6,
     velocidade: 0,
-    forcaDoPulo: 15,
+    forcaDoPulo: 23.6,
     qntPulos: 0,
 
     atualiza: function(){
@@ -85,7 +85,7 @@ function atualiza(){ // Atualiza a lógica do jogo
     bloco.atualiza();
 } 
 function desenha(){ // Desenha na tela
-    ctx.fillStyle = "#50beff"; // Define a cor do fundo
+    ctx.fillStyle = "#80daff"; // Define a cor do fundo
     ctx.fillRect(0, 0, LARGURA, ALTURA); // Desenha o fundo
 
     chao.desenha();
