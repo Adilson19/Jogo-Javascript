@@ -1,5 +1,7 @@
+//  Defindo as variaveis do jogo
 var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3,
 
+// Objeto chao
 chao = {
     y: 550,
     altura: 50,
@@ -11,6 +13,7 @@ chao = {
     }
 },
 
+// Objeto bloco
 bloco = {
     x: 50,
     y: 0,
@@ -21,7 +24,7 @@ bloco = {
     velocidade: 0,
     forcaDoPulo: 23.6,
     qntPulos: 0,
-
+    // Atualiza a posicao do bloco
     atualiza: function(){
         this.velocidade += this.gravidade;
         this.y += this.velocidade;
@@ -32,7 +35,7 @@ bloco = {
             this.qntPulos = 0;
         }
     },
-
+    // Faz o bloco pular
     pula: function(){
         // Impede que o bloco pule mais que o maximo de pulos
         if(this.qntPulos < maxPulos){
@@ -41,13 +44,14 @@ bloco = {
         }
     },
 
+    // Desenha o bloco na tela
     desenha: function(){
         ctx.fillStyle = this.cor;
         ctx.fillRect(this.x, this.y, this.largura, this.altura);
     }
 };
 
-
+// Função que trata o clique do mouse
 function clique(event){
     bloco.pula();
 }
@@ -73,6 +77,8 @@ function main(){
 
     roda();
 }
+
+// Função que roda o jogo
 function roda(){
     atualiza();
     desenha();
@@ -92,5 +98,5 @@ function desenha(){ // Desenha na tela
     bloco.desenha();
 } 
 
-// Inicia o jogo
+// Inicia o jogo funcao principal do jogo
 main();
