@@ -1,5 +1,12 @@
 //  Defindo as variaveis do jogo
-var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6,
+var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6, estadoAtual,
+
+// Estados do jogo
+estados = {
+    jogar: 0,
+    jogando: 1,
+    perdeu: 2
+},
 
 // Objeto chao
 chao = {
@@ -101,7 +108,16 @@ obstaculos = {
 
 // Função que trata o clique do mouse
 function clique(event){
-    bloco.pula();
+    if(estadoAtual == estados.jogando)
+        bloco.pula();
+
+    else if(estadoAtual == estados.jogar){
+        estadoAtual = estados.jogando;
+    }
+    
+    else if(estadoAtual == estados.perdeu){
+        estadoAtual = estados.jogar;
+    }
 }
 
 // Função principal do jogo
@@ -123,6 +139,7 @@ function main(){
     document.body.appendChild(canvas); // Adiciona o canvas ao corpo do documento
     document.addEventListener("mousedown", clique);
 
+    estadoAtual = estados.jogar; // Define o estado inicial do jogo
     roda();
 }
 
@@ -131,17 +148,38 @@ function roda(){
     atualiza();
     desenha();
 
-    window.requestAnimationFrame(roda); // Chama a função roda novamente
+    // Chama a função roda novamente
+    window.requestAnimationFrame(roda); 
 }
-function atualiza(){ // Atualiza a lógica do jogo
+
+// Atualiza a lógica do jogo
+function atualiza(){ 
     frames++;
 
     bloco.atualiza();
-    obstaculos.atualiza();
+    if(estadoAtual == estados.jogando){
+        obstaculos.atualiza();
+    }
 } 
-function desenha(){ // Desenha na tela
+
+//  Funcao que Desenha na tela
+function desenha(){ 
     ctx.fillStyle = "#80daff"; // Define a cor do fundo
     ctx.fillRect(0, 0, LARGURA, ALTURA); // Desenha o fundo
+
+    if(estadoAtual == estados.jogar){
+        ctx.fillStyle = "#00ff00";
+        ctx.fillRect = (LARGURA / 2 - 50, ALTURA / 2 - 50, 100, 100);
+    } 
+
+    else if(estadoAtual == estados.perdeu){
+        ctx.fillStyle = "#ff0000";
+        ctx.fillRect = (LARGURA / 2 - 50, ALTURA / 2 - 50, 100, 100);
+    }
+
+    else if(estadoAtual == estados.jogando){
+        
+    }
 
     chao.desenha();
     obstaculos.desenha();
