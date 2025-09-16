@@ -157,9 +157,8 @@ function atualiza(){
     frames++;
 
     bloco.atualiza();
-    if(estadoAtual == estados.jogando){
+    if(estadoAtual == estados.jogando)
         obstaculos.atualiza();
-    }
 } 
 
 //  Funcao que Desenha na tela
@@ -168,21 +167,19 @@ function desenha(){
     ctx.fillRect(0, 0, LARGURA, ALTURA); // Desenha o fundo
 
     if(estadoAtual == estados.jogar){
-        ctx.fillStyle = "#00ff00";
+        ctx.fillStyle = "green";
         ctx.fillRect = (LARGURA / 2 - 50, ALTURA / 2 - 50, 100, 100);
     } 
 
     else if(estadoAtual == estados.perdeu){
-        ctx.fillStyle = "#ff0000";
+        ctx.fillStyle = "red";
         ctx.fillRect = (LARGURA / 2 - 50, ALTURA / 2 - 50, 100, 100);
     }
 
-    else if(estadoAtual == estados.jogando){
-        
-    }
+    else if(estadoAtual == estados.jogando)
+        obstaculos.desenha();
 
     chao.desenha();
-    obstaculos.desenha();
     bloco.desenha();
 } 
 
