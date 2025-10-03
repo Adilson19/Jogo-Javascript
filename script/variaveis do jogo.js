@@ -183,12 +183,12 @@ function desenha() {
 
     if (estadoAtual == estados.jogar) {
         ctx.fillStyle = "green";
-        ctx.fillRect = (LARGURA / 2 - 50, ALTURA / 2 - 50, 100, 100);
+        ctx.fillRect(LARGURA / 2 - 50, ALTURA / 2 - 50, 100, 100);
     }
 
     else if (estadoAtual == estados.perdeu) {
         ctx.fillStyle = "red";
-        ctx.fillRect = (LARGURA / 2 - 50, ALTURA / 2 - 50, 100, 100);
+        ctx.fillRect(LARGURA / 2 - 50, ALTURA / 2 - 50, 100, 100);
     }
 
     else if (estadoAtual == estados.jogando)
