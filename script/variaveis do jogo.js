@@ -134,7 +134,7 @@ function clique(event) {
 // Função principal do jogo
 function main() {
     ALTURA = window.innerHeight; // Devovlve o tamanho da janela do usuario
-    LARGURA = window.innerHeight; // Devovlve o tamanho da janela do usuario
+    LARGURA = window.innerWidth; // Devovlve o tamanho da janela do usuario
 
     if (LARGURA >= 500) { // Forcando a largura e altura a ter tamanho fixo
         LARGURA = 600;
