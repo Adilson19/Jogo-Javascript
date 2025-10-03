@@ -128,6 +128,7 @@ function clique(event) {
         estadoAtual = estados.jogar;
         bloco.velocidade = 0;
         bloco.y = 0;
+        obstaculos.limpa();
     }
 }
 
