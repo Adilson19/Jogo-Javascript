@@ -31,6 +31,8 @@ var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6, esta
         velocidade: 0,
         forcaDoPulo: 23.6,
         qntPulos: 0,
+        score: 0,
+
         // Atualiza a posicao do bloco
         atualiza: function () {
             this.velocidade += this.gravidade;
@@ -53,8 +55,9 @@ var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6, esta
         },
 
         reset: function () {
-            bloco.velocidade = 0;
-            bloco.y = 0;
+            this.velocidade = 0;
+            this.y = 0;
+            this.score = 0;
         },
 
         // Desenha o bloco na tela
@@ -96,9 +99,11 @@ var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6, esta
 
                 obs.x -= velocidade;
 
-                if (bloco.x < obs.x + obs.largura && bloco.x + bloco.largura >= obs.x && bloco.y + bloco.altura >= chao.y - obs.altura) {
+                if (bloco.x < obs.x + obs.largura && bloco.x + bloco.largura >= obs.x && bloco.y + bloco.altura >= chao.y - obs.altura)
                     estadoAtual = estados.perdeu;
-                }
+
+                else if (obs.x == 0)
+                    bloco.score++;
 
                 else if (obs.x <= -obs.largura) {
                     this._obs.splice(i, 1);
@@ -183,6 +188,11 @@ function atualiza() {
 function desenha() {
     ctx.fillStyle = "#80daff"; // Define a cor do fundo
     ctx.fillRect(0, 0, LARGURA, ALTURA); // Desenha o fundo
+
+    // Mudando a cor para branco
+    ctx.fillStyle = "#fff";
+    ctx.font = "50px Arial";
+    ctx.fillText(bloco.score, 0, 0);
 
     if (estadoAtual == estados.jogar) {
         ctx.fillStyle = "green";
