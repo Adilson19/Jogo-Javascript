@@ -52,6 +52,11 @@ var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6, esta
             }
         },
 
+        reset: function () {
+            bloco.velocidade = 0;
+            bloco.y = 0;
+        },
+
         // Desenha o bloco na tela
         desenha: function () {
             ctx.fillStyle = this.cor;
@@ -68,7 +73,8 @@ var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6, esta
         insere: function () {
             this._obs.push({
                 x: LARGURA,
-                largura: 30 + Math.floor(21 * Math.random()),
+                //largura: 30 + Math.floor(21 * Math.random()),
+                largura: 50,// locando uma largura fixa
                 altura: 30 + Math.floor(120 * Math.random()),
                 cor: this.cores[Math.floor(5 * Math.random())]
             });
@@ -126,8 +132,7 @@ function clique(event) {
 
     else if (estadoAtual == estados.perdeu && bloco.y >= 2 * ALTURA) {
         estadoAtual = estados.jogar;
-        bloco.velocidade = 0;
-        bloco.y = 0;
+        bloco.reset();
         obstaculos.limpa();
     }
 }
@@ -172,9 +177,6 @@ function atualiza() {
 
     if (estadoAtual == estados.jogando)
         obstaculos.atualiza();
-
-    else if (estadoAtual == estados.perdeu)
-        obstaculos.limpa();
 }
 
 //  Funcao que Desenha na tela
