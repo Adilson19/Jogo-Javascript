@@ -137,8 +137,8 @@ function clique(event) {
 
     else if (estadoAtual == estados.perdeu && bloco.y >= 2 * ALTURA) {
         estadoAtual = estados.jogar;
-        bloco.reset();
         obstaculos.limpa();
+        bloco.reset();        
     }
 }
 
@@ -192,7 +192,7 @@ function desenha() {
     // Mudando a cor para branco
     ctx.fillStyle = "#fff";
     ctx.font = "50px Arial";
-    ctx.fillText(bloco.score, 0, 0);
+    ctx.fillText(bloco.score, 30, 68);
 
     if (estadoAtual == estados.jogar) {
         ctx.fillStyle = "green";
@@ -202,6 +202,20 @@ function desenha() {
     else if (estadoAtual == estados.perdeu) {
         ctx.fillStyle = "red";
         ctx.fillRect(LARGURA / 2 - 50, ALTURA / 2 - 50, 100, 100);
+
+        ctx.save();
+        ctx.translate(LARGURA / 2, ALTURA / 2);
+        ctx.fillStyle = "#fff";
+
+        if(bloco.score < 10)
+            ctx.fillText(bloco.score, -13, 19);
+
+        else if (bloco.score >= 10 && bloco.score < 100)
+            ctx.fillText(bloco.score, -26, 19);
+        else
+            ctx.fillText(bloco.score, -39, 19);
+
+        ctx.restore();
     }
 
     else if (estadoAtual == estados.jogando)
