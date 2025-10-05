@@ -1,5 +1,5 @@
 //  Defindo as variaveis do jogo
-var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6, estadoAtual,
+var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6, estadoAtual, record,
 
     // Estados do jogo
     estados = {
@@ -138,7 +138,7 @@ function clique(event) {
     else if (estadoAtual == estados.perdeu && bloco.y >= 2 * ALTURA) {
         estadoAtual = estados.jogar;
         obstaculos.limpa();
-        bloco.reset();        
+        bloco.reset();
     }
 }
 
@@ -162,6 +162,11 @@ function main() {
     document.addEventListener("mousedown", clique);
 
     estadoAtual = estados.jogar; // Define o estado inicial do jogo
+    record = localStorage.getItem("record");
+
+    if (record == null)
+        record = 0;
+
     roda();
 }
 
@@ -207,7 +212,7 @@ function desenha() {
         ctx.translate(LARGURA / 2, ALTURA / 2);
         ctx.fillStyle = "#fff";
 
-        if(bloco.score < 10)
+        if (bloco.score < 10)
             ctx.fillText(bloco.score, -13, 19);
 
         else if (bloco.score >= 10 && bloco.score < 100)
