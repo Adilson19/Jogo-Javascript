@@ -57,7 +57,7 @@ var canvas, ctx, ALTURA, LARGURA, frames = 0, maxPulos = 3, velocidade = 6, esta
         reset: function () {
             this.velocidade = 0;
             this.y = 0;
-            
+
             if (this.score > record) {
                 localStorage.setItem("record", this.score);
                 record = this.score;
@@ -216,6 +216,9 @@ function desenha() {
         ctx.save();
         ctx.translate(LARGURA / 2, ALTURA / 2);
         ctx.fillStyle = "#fff";
+
+        if (bloco.score > record)
+            ctx.fillText("Novo Record!", -150, -65);
 
         if (bloco.score < 10)
             ctx.fillText(bloco.score, -13, 19);
